@@ -1,0 +1,303 @@
+
+DEPLOY SERVER LAYANAN INTERNAL
+Daftar Perintah dan Penjelasan
+
+1. LOGIN KE SERVER
+
+Perintah:
+(Login melalui VirtualBox atau SSH)
+
+ssh username@ip_server
+
+Fungsi:
+Digunakan untuk masuk ke dalam sistem Ubuntu Server agar administrator dapat melakukan konfigurasi server.
+
+2. MENGETAHUI INFORMASI SERVER
+
+Perintah:
+
+hostnamectl
+
+Fungsi:
+Menampilkan informasi sistem operasi, hostname, versi kernel Linux, arsitektur CPU, serta informasi dasar server.
+
+3. MELIHAT ALAMAT IP SERVER
+
+Perintah:
+
+hostname -I
+
+atau
+
+ip a
+
+Fungsi:
+Menampilkan alamat IP server yang digunakan agar server dapat diakses melalui jaringan.
+
+4. MEMPERBARUI REPOSITORY
+
+Perintah:
+
+sudo apt update
+
+Fungsi:
+Mengambil daftar paket terbaru dari repository Ubuntu sehingga sistem mengetahui versi software yang tersedia.
+
+5. MENGINSTALL NGINX
+
+Perintah:
+
+sudo apt install nginx -y
+
+Fungsi:
+Menginstall web server Nginx yang digunakan untuk melayani permintaan HTTP maupun HTTPS dari client.
+
+
+6. MENGECEK STATUS NGINX
+
+Perintah:
+
+sudo systemctl status nginx
+
+Fungsi:
+Memastikan service Nginx telah aktif dan berjalan dengan baik.
+
+Status yang diharapkan:
+
+Active: active (running)
+
+
+7. MENGUJI KONFIGURASI NGINX
+
+Perintah:
+
+sudo nginx -t
+
+Fungsi:
+Melakukan pengecekan apakah konfigurasi Nginx memiliki kesalahan.
+
+Output yang diharapkan:
+
+syntax is ok
+test is successful
+
+8. RESTART NGINX
+
+Perintah:
+
+sudo systemctl restart nginx
+
+Fungsi:
+Memuat ulang service Nginx setelah konfigurasi diubah.
+
+9. MENGINSTALL MYSQL
+
+Perintah:
+
+sudo apt install mysql-server -y
+
+Fungsi:
+Menginstall Database Server MySQL yang digunakan sebagai penyimpanan data aplikasi.
+
+10. MENGECEK STATUS MYSQL
+
+
+Perintah:
+
+sudo systemctl status mysql
+
+Fungsi:
+Memastikan Database Server berjalan dengan normal.
+
+Status yang diharapkan:
+
+Active: active (running)
+
+11. LOGIN KE MYSQL
+
+
+Perintah:
+
+sudo mysql
+
+Fungsi:
+Masuk ke console MySQL sebagai administrator.
+
+12. MENAMPILKAN DATABASE
+
+Perintah:
+
+SHOW DATABASES;
+
+Fungsi:
+Menampilkan seluruh database yang terdapat pada server.
+
+
+13. KELUAR DARI MYSQL
+
+Perintah:
+
+EXIT;
+
+Fungsi:
+Keluar dari console MySQL.
+
+
+14. MENGINSTALL SAMBA
+
+Perintah:
+
+sudo apt install samba -y
+
+Fungsi:
+Menginstall File Server Samba agar file dapat dibagikan melalui jaringan.
+
+15. MENGECEK STATUS SAMBA
+
+Perintah:
+
+sudo systemctl status smbd
+
+Fungsi:
+Memastikan service Samba telah berjalan.
+
+
+16. MEMBUKA FILE KONFIGURASI SAMBA
+
+
+Perintah:
+
+sudo nano /etc/samba/smb.conf
+
+Fungsi:
+Membuka file konfigurasi Samba untuk melakukan pengaturan folder sharing.
+
+
+17. RESTART SAMBA
+
+Perintah:
+
+sudo systemctl restart smbd
+
+Fungsi:
+Menerapkan konfigurasi Samba yang telah dibuat.
+
+18. MELIHAT PORT YANG SEDANG BERJALAN
+
+Perintah:
+
+sudo ss -tulpn
+
+Fungsi:
+Menampilkan seluruh port yang sedang digunakan beserta service yang berjalan.
+
+19. MENGECEK FIREWALL
+
+Perintah:
+
+sudo ufw status
+
+Fungsi:
+Melihat status firewall Ubuntu (UFW).
+
+20. MENGAKTIFKAN FIREWALL
+
+Perintah:
+
+sudo ufw enable
+
+Fungsi:
+Mengaktifkan firewall untuk meningkatkan keamanan server.
+
+21. MENGIZINKAN SSH
+
+
+Perintah:
+
+sudo ufw allow OpenSSH
+
+Fungsi:
+Mengizinkan koneksi SSH agar server tetap dapat diakses dari jaringan.
+
+
+22. MENGIZINKAN NGINX
+
+
+Perintah:
+
+sudo ufw allow 'Nginx Full'
+
+Fungsi:
+Mengizinkan akses HTTP (80) dan HTTPS (443) pada Nginx.
+
+23. MELIHAT PENGGUNAAN STORAGE
+
+
+Perintah:
+
+df -h
+
+Fungsi:
+Menampilkan kapasitas harddisk yang digunakan dan sisa ruang penyimpanan.
+
+
+24. MELIHAT PENGGUNAAN RAM
+
+Perintah:
+
+free -h
+
+Fungsi:
+Menampilkan informasi penggunaan RAM pada server.
+
+
+25. MENJALANKAN BACKUP
+
+
+Perintah:
+
+sudo rsync -av /srv/shares /backup
+
+Fungsi:
+Melakukan proses backup data dari folder utama menuju folder backup.
+
+
+26. MELIHAT HASIL BACKUP
+
+Perintah:
+
+ls -lah /backup
+
+Fungsi:
+Menampilkan file hasil backup yang telah dibuat.
+
+
+27. MELIHAT SERVICE YANG BERJALAN
+
+Perintah:
+
+systemctl --type=service --state=running
+
+Fungsi:
+Menampilkan seluruh service Linux yang sedang aktif.
+
+28. PENGUJIAN AKHIR
+
+Perintah:
+
+sudo systemctl status nginx
+
+sudo systemctl status mysql
+
+sudo systemctl status smbd
+
+Fungsi:
+Memastikan seluruh layanan utama telah aktif sebelum server digunakan.
+
+Status yang diharapkan:
+
+Active: active (running)
+
+=========================================================
+SELESAI
+=========================================================
